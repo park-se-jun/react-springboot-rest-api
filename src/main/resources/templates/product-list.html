@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grids & Circles</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body class="containers-fluid">
+<h1>Grids & Circles</h1>
+<h2>Production Management</h2>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+<a th:href="@{/new-product}" class="btn btn-primary me-md-2" type="button">Add Product</a>
+</div>
+<table class="table table-hover table-striped">
+  <thead>
+  <tr>
+    <th scope="coll">product id</th>
+    <th scope="coll">product name</th>
+    <th scope="coll">category</th>
+    <th scope="coll">price</th>
+    <th scope="coll">description</th>
+    <th scope="coll">created at</th>
+    <th scope="coll">updated at</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="product:${products}" th:object="${product}">
+    <th scope="row">1</th>
+    <td th:text="*{productId}"></td>
+    <td th:text="*{productName}"></td>
+    <td th:text="*{category}"></td>
+    <td th:text="*{price}"></td>
+    <td th:text="*{description}"></td>
+    <td th:text="*{createdAt}"></td>
+    <td th:text="*{updatedAt}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
