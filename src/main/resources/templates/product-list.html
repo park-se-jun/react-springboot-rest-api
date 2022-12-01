@@ -27,8 +27,7 @@
   </thead>
   <tbody>
   <tr th:each="product:${products}" th:object="${product}">
-    <th scope="row">1</th>
-    <td th:text="*{productId}"></td>
+    <th scope="row" th:text="*{productId}"></th>
     <td th:text="*{productName}"></td>
     <td th:text="*{category}"></td>
     <td th:text="*{price}"></td>
