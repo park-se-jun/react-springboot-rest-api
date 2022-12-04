@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 import static com.example.gccoffee.repository.JdbcUtils.toUUID;
@@ -132,5 +133,16 @@ public class ScheduleRepository {
                         "AND (s.theater_theater_id = UUID_TO_BIN(:cinemaId))",
                 paramMap,
                 scheduleRowMapper);
+    }
+
+    public int createSchedule(UUID scheduleId, UUID movieId, LocalDateTime startTime, UUID screenId) {
+        Map<String,Object>paramMap=new HashMap<>();
+        paramMap.put("scheduleId",scheduleId.toString());
+        paramMap.put("movieId", movieId.toString());
+        paramMap.put("startTime", startTime);
+        paramMap.put("screenId", scheduleId.toString());
+        return jdbcTemplate.update(
+                "insert into movie_schedule(movie_schedule_id, start_time, movie_movie_id, screen_screen_id) " +
+                        "VALUES (UUID_TO_BIN(:scheduleId),:startTime,UUID_TO_BIN(:movieId),UUID_TO_BIN(:screenId))",paramMap);
     }
 }

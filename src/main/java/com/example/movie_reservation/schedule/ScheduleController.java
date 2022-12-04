@@ -1,6 +1,9 @@
 package com.example.movie_reservation.schedule;
 
 import com.example.movie_reservation.Cinema.SeatsResponseDto;
+import com.example.movie_reservation.schedule.dto.CreateScheduleRequestDto;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -21,11 +24,18 @@ public class ScheduleController {
     @GetMapping("schedules")
     public List<SchedulesResponseDto> getSchedules(
             @RequestParam("cinemaId") UUID cinemaId,
-            @RequestParam(value = "date",defaultValue = "#{T(java.time.LocalDate).now()}")LocalDate date,
+            @RequestParam(value = "date",defaultValue = "#{T(java.time.LocalDate).now()}")
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
             @RequestParam(value = "movieId",required = false) UUID movieId
     ){
         var schedules = scheduleService.findSchedules(cinemaId, date, movieId);
         return schedules.stream().map(SchedulesResponseDto::from).toList();
+    }
+
+    @PostMapping("schedules")
+    public ResponseEntity createSchedule(@RequestBody CreateScheduleRequestDto requestDto){
+        scheduleService.createSchedule(requestDto.movieId(),requestDto.startTime(),requestDto.screenId());
+        return ResponseEntity.accepted().body(null);
     }
 
     @GetMapping("schedules/{scheduleId}")
