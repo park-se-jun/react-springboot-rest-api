@@ -140,7 +140,7 @@ public class ScheduleRepository {
         paramMap.put("scheduleId",scheduleId.toString());
         paramMap.put("movieId", movieId.toString());
         paramMap.put("startTime", startTime);
-        paramMap.put("screenId", scheduleId.toString());
+        paramMap.put("screenId", screenId.toString());
         return jdbcTemplate.update(
                 "insert into movie_schedule(movie_schedule_id, start_time, movie_movie_id, screen_screen_id) " +
                         "VALUES (UUID_TO_BIN(:scheduleId),:startTime,UUID_TO_BIN(:movieId),UUID_TO_BIN(:screenId))",paramMap);
