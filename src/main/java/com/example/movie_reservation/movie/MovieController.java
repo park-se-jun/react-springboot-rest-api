@@ -16,14 +16,15 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @GetMapping(value = "/movie/{movieId}")
+    @GetMapping(value = "/movies/{movieId}")
     public MovieResponseDto getMovieById(@PathVariable(value = "movieId") UUID movieId){
         return null;
     }
 
     @GetMapping(value = "/movies")
     public List<MovieResponseDto> getMovies(){
-        return null;
+        return movieService.getMovieList();
+
     }
 
     @PutMapping(value = "/movie")

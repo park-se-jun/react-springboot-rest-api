@@ -1,6 +1,8 @@
 package com.example.movie_reservation.movie.model;
 
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Movie {
@@ -8,26 +10,27 @@ public class Movie {
     private final String title;
     private final LocalDate releaseDate;
     private final String posterUrl;
-
-
-
     private String desc;
-    private boolean showing = false;
+    private final Time runningTime;
+    private boolean showingStatus = false;
 
-    public Movie(UUID id, String title, LocalDate releaseDate, String posterUrl) {
-        this.id = id;
-        this.title = title;
-        this.releaseDate = releaseDate;
-        this.posterUrl = posterUrl;
-        this.desc = "";
-    }
+//    public Movie(UUID id, String title, LocalDate releaseDate, String posterUrl, LocalDateTime runningTime) {
+//        this.id = id;
+//        this.title = title;
+//        this.releaseDate = releaseDate;
+//        this.posterUrl = posterUrl;
+//        this.desc = "";
+//        this.runningTime = runningTime;
+//    }
 
-    public Movie(UUID id, String title, LocalDate releaseDate, String posterUrl, String desc) {
+    public Movie(UUID id, String title, LocalDate releaseDate, String posterUrl, String desc, Time runningTime,boolean showingStatus) {
         this.id = id;
         this.title = title;
         this.releaseDate = releaseDate;
         this.posterUrl = posterUrl;
         this.desc = desc;
+        this.runningTime = runningTime;
+        this.showingStatus = showingStatus;
     }
 
     public UUID getId() {
@@ -51,14 +54,14 @@ public class Movie {
     }
 
     public boolean isShowing() {
-        return showing;
+        return showingStatus;
     }
 
     public void setDesc(String desc) {
         this.desc = desc;
     }
 
-    public void setShowing(boolean showing) {
-        this.showing = showing;
+    public void setShowingStatus(boolean showing) {
+        this.showingStatus = showing;
     }
 }

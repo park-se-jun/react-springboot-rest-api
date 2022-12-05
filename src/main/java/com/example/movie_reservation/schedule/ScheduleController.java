@@ -1,6 +1,6 @@
 package com.example.movie_reservation.schedule;
 
-import com.example.movie_reservation.cinema.SeatsResponseDto;
+import com.example.movie_reservation.schedule.dto.SeatByScheduleResponseDto;
 import com.example.movie_reservation.schedule.dto.CreateScheduleRequestDto;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -45,9 +45,9 @@ public class ScheduleController {
     }
 
     @GetMapping("schedules/{scheduleId}/seats")
-    public SeatsResponseDto getSeatsByScheduleId(@PathVariable("scheduleId")UUID scheduleId){
+    public SeatByScheduleResponseDto getSeatsByScheduleId(@PathVariable("scheduleId")UUID scheduleId){
         var seats = scheduleService.getSeatsByScheduleId(scheduleId);
-        return SeatsResponseDto.from(seats);
+        return SeatByScheduleResponseDto.from(seats);
     }
     //스케쥴 생성(관리자) create
 

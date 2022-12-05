@@ -28,12 +28,12 @@ public class ProductJdbcRepository implements ProductRepository {
 
     @Override
     public List<Product> findAll() {
-        return jdbcTemplate.query("select * from products;", productRowMapper);
+        return jdbcTemplate.query("select * from gc_coffee.products;", productRowMapper);
     }
 
     @Override
     public Product insert(Product product) {
-        var update= jdbcTemplate.update("INSERT INTO products(product_id, product_name, category, price, description, created_at, updated_at)" +
+        var update= jdbcTemplate.update("INSERT INTO gc_coffee.products(product_id, product_name, category, price, description, created_at, updated_at)" +
                 " VALUES(UUID_TO_BIN(:productId),:productName, :category, :price, :description, :createdAt, :updatedAt);",toParamMap(product));
         if(update==0){
             throw new RuntimeException("Noting was inserted");
@@ -43,7 +43,7 @@ public class ProductJdbcRepository implements ProductRepository {
 
     @Override
     public Product update(Product product) {
-        var update = jdbcTemplate.update("UPDATE products SET  product_name=:productName ,category=:category ,price=:price ,description=:description ,updated_at=:updatedAt" +
+        var update = jdbcTemplate.update("UPDATE gc_coffee.products SET  product_name=:productName ,category=:category ,price=:price ,description=:description ,updated_at=:updatedAt" +
                 " WHERE product_id = UUID_TO_BIN(:productId)", toParamMap(product));
         if(update != 1){
             throw new RuntimeException("Nothing was updated");
@@ -55,7 +55,7 @@ public class ProductJdbcRepository implements ProductRepository {
     public Optional<Product> findById(UUID prductId) {
 
         try {
-            return Optional.of(jdbcTemplate.queryForObject("SELECT * FROM products WHERE product_id=UUID_TO_BIN(:productId)",
+            return Optional.of(jdbcTemplate.queryForObject("SELECT * FROM gc_coffee.products WHERE product_id=UUID_TO_BIN(:productId)",
                     Collections.singletonMap("productId",prductId.toString()),productRowMapper));
         }catch (EmptyResultDataAccessException e){
             return Optional.empty();
@@ -65,7 +65,7 @@ public class ProductJdbcRepository implements ProductRepository {
     @Override
     public Optional<Product> findByName(String productName) {
         try {
-            return Optional.of(jdbcTemplate.queryForObject("SELECT * FROM products WHERE product_name=:productName",
+            return Optional.of(jdbcTemplate.queryForObject("SELECT * FROM gc_coffee.products WHERE product_name=:productName",
                     Collections.singletonMap("productName",productName.toString()),productRowMapper));
         }catch (EmptyResultDataAccessException e){
             return Optional.empty();
@@ -74,12 +74,12 @@ public class ProductJdbcRepository implements ProductRepository {
 
     @Override
     public List<Product> findByCategory(Category category) {
-        return jdbcTemplate.query("SELECT * FROM products WHERE category = :category",Collections.singletonMap("category",category.name()),productRowMapper);
+        return jdbcTemplate.query("SELECT * FROM gc_coffee.products WHERE category = :category",Collections.singletonMap("category",category.name()),productRowMapper);
     }
 
     @Override
     public void deleteAll() {
-        jdbcTemplate.getJdbcTemplate().update("DELETE FROM products");
+        jdbcTemplate.getJdbcTemplate().update("DELETE FROM gc_coffee.products");
     }
     private  Map<String,Object> toParamMap(Product product){
         var paramMap = new HashMap<String, Object>();
