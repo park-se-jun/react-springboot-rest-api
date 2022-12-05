@@ -1,6 +1,5 @@
-package com.example.movie_reservation.Cinema;
+package com.example.movie_reservation.cinema;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;

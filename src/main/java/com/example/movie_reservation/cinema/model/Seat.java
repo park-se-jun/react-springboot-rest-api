@@ -1,4 +1,4 @@
-package com.example.movie_reservation.Cinema.model;
+package com.example.movie_reservation.cinema.model;
 
 import java.util.UUID;
 

@@ -1,6 +1,6 @@
 package com.example.movie_reservation.schedule;
 
-import com.example.movie_reservation.Cinema.SeatsResponseDto;
+import com.example.movie_reservation.cinema.SeatsResponseDto;
 import com.example.movie_reservation.schedule.dto.CreateScheduleRequestDto;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @RequestMapping(value = "${apiPrefix}")

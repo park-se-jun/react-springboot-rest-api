@@ -1,4 +1,4 @@
-package com.example.movie_reservation.Cinema;
+package com.example.movie_reservation.cinema;
 
 import java.util.Map;
 
