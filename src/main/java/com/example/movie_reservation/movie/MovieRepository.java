@@ -1,14 +1,10 @@
 package com.example.movie_reservation.movie;
 
-import com.example.gccoffee.repository.JdbcUtils;
 import com.example.movie_reservation.movie.model.Movie;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Time;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 import static com.example.gccoffee.repository.JdbcUtils.*;
 @Repository

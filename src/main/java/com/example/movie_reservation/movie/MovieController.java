@@ -1,6 +1,5 @@
 package com.example.movie_reservation.movie;
 
-import com.example.movie_reservation.movie.dto.MovieRequestDto;
 import com.example.movie_reservation.movie.dto.MovieResponseDto;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,19 +16,13 @@ public class MovieController {
     }
 
     @GetMapping(value = "/movies/{movieId}")
-    public MovieResponseDto getMovieById(@PathVariable(value = "movieId") UUID movieId){
+    public MovieResponseDto getMovieById( @PathVariable(value = "movieId") UUID movieId){
         return null;
     }
 
-    @GetMapping(value = "/movies")
-    public List<MovieResponseDto> getMovies(){
-        return movieService.getMovieList();
+    @GetMapping(value = "/movies/active")
+    public List<MovieResponseDto> getActiveMovies(){
+        return movieService.getActiveMovieList();
 
     }
-
-    @PutMapping(value = "/movie")
-    public MovieResponseDto createMovie(@RequestBody MovieRequestDto movieRequestDto){
-        return null;
-    }
-
 }

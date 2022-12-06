@@ -12,7 +12,7 @@ public class MovieService {
         this.movieRepository = movieRepository;
     }
 
-    public List<MovieResponseDto> getMovieList(){
+    public List<MovieResponseDto> getActiveMovieList(){
         return movieRepository
                 .getActiveMovieList()
                 .stream()
