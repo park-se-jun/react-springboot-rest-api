@@ -52,7 +52,7 @@ public class ScheduleRepository {
                             "join screen s on s.screen_id = ms.screen_screen_id " +
                             "join theater t on s.theater_theater_id = t.theater_id " +
                             "where ms.movie_schedule_id=UUID_TO_BIN(:scheduleId);",
-                    Collections.singletonMap("scheduleId", scheduleId),
+                    Collections.singletonMap("scheduleId", scheduleId.toString()),
                     scheduleRowMapper);
             return Optional.of(schedule);
         } catch (DataAccessException e) {

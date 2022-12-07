@@ -93,8 +93,8 @@ public class ReservationRepository {
 
     public List<ReservedSeat> getReservedSeatByMovieReservationId(UUID reservationId) {
         return jdbcTemplate.query(
-                "select s.seat_col,s.seat_row reserved_seat_id,seat_seat_id,movie_schedule_movie_schedule_id from reserved_seat join seat s on s.seat_id = reserved_seat.seat_seat_id where movie_ticket_movie_ticket_id=:reservationId",
-                Collections.singletonMap("reservationId", reservationId),
+                "select s.seat_col,s.seat_row, reserved_seat_id,s.seat_id,movie_schedule_movie_schedule_id from reserved_seat join seat s on s.seat_id = seat_seat_id where movie_ticket_movie_ticket_id=UUID_TO_BIN(:reservationId)",
+                Collections.singletonMap("reservationId", reservationId.toString()),
                 (rs, rowNum) -> {
                     var reservedSeatId = toUUID(rs.getBytes("reserved_seat_id"));
                     var seatRow = rs.getString("seat_row");

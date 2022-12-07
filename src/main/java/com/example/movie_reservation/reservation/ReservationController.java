@@ -29,7 +29,7 @@ public class ReservationController {
         return null;
     }
     @GetMapping("/reservations/lookup/{userPhone}")
-    public List<MovieReservationReadResponseDto> getReservationByUserPhoneNumber(@RequestParam("userPhone")String phoneNumber){
+    public List<MovieReservationReadResponseDto> getReservationByUserPhoneNumber(@PathVariable("userPhone")String phoneNumber){
         return reservationService.findMovieReservationByPhoneNumber(phoneNumber);
     }
     //전화번호로 티켓 조회
