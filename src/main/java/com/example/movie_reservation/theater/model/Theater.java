@@ -10,4 +10,12 @@ public class Theater {
         this.theaterId = theaterId;
         this.theaterName = theaterName;
     }
+
+    public UUID getTheaterId() {
+        return theaterId;
+    }
+
+    public String getTheaterName() {
+        return theaterName;
+    }
 }

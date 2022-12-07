@@ -22,12 +22,12 @@ public class ScheduleController {
     //스케쥴 리스트 조회 read
     @GetMapping("schedules")
     public List<SchedulesResponseDto> getSchedules(
-            @RequestParam("cinemaId") UUID cinemaId,
+            @RequestParam("theaterId") UUID theaterId,
             @RequestParam(value = "date",defaultValue = "#{T(java.time.LocalDate).now()}")
             @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
             @RequestParam(value = "movieId",required = false) UUID movieId
     ){
-        var schedules = scheduleService.findSchedules(cinemaId, date, movieId);
+        var schedules = scheduleService.findSchedules(theaterId, date, movieId);
         return schedules.stream().map(SchedulesResponseDto::from).toList();
     }
 
