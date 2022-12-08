@@ -9,6 +9,7 @@ public record MovieReservationReadResponseDto(
         UUID movieReservationId,
         String phone, int seatCount,
         long price,
+        String screenName,
         String movieTitle,
         LocalTime movieStartTime,
         LocalTime movieEndTime,

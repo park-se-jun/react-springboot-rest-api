@@ -60,6 +60,7 @@ public class ReservationService {
                     phoneNumber,
                     movieReservation.getSeatCount(),
                     movieReservation.getPrice(),
+                    schedule.getScreenName(),
                     schedule.getMovieTitle(),
                     schedule.getStartTime().toLocalTime(),
                     schedule.getEndTime().toLocalTime(),
