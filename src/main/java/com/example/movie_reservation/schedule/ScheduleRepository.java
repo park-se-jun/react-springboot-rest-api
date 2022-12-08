@@ -91,7 +91,7 @@ public class ScheduleRepository {
                 (rs, rowNum) -> {
                     var seatRow = rs.getString("seat_row");
                     var seatCol = rs.getInt("seat_col");
-                    resultMap.get(seatRow)[seatCol] = false;
+                    resultMap.get(seatRow)[seatCol-1] = false;
                     return null;
                 }
         );
