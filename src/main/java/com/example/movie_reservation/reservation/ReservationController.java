@@ -6,6 +6,7 @@ import com.example.movie_reservation.reservation.dto.MovieReservationReadRespons
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("${apiPrefix}")
@@ -25,8 +26,8 @@ public class ReservationController {
     public MovieReservationCreateResponseDto makeMovieReservation(@RequestBody MovieReservationPostRequestDto requestDto){
         var scheduleId = requestDto.scheduleId();
 
-        reservationService.createMovieReservation(requestDto);
-        return null;
+        var movieReservation = reservationService.createMovieReservation(requestDto);
+        return new MovieReservationCreateResponseDto(movieReservation);
     }
     @GetMapping("/reservations/lookup/{userPhone}")
     public List<MovieReservationReadResponseDto> getReservationByUserPhoneNumber(@PathVariable("userPhone")String phoneNumber){

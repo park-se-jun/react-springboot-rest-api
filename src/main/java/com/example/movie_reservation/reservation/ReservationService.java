@@ -23,10 +23,10 @@ public class ReservationService {
         this.scheduleRepository = scheduleRepository;
     }
 
-    public void createMovieReservation(MovieReservationPostRequestDto requestDto) {
+    public UUID createMovieReservation(MovieReservationPostRequestDto requestDto) {
 
         int seatCount = requestDto.colArray().size();
-        reservationRepository.createMovieReservation(
+        return reservationRepository.createMovieReservation(
                 UUID.randomUUID(),
                 requestDto.price(),
                 LocalDateTime.now(),
