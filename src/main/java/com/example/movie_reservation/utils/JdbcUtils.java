@@ -1,4 +1,4 @@
-package com.example.gccoffee.repository;
+package com.example.movie_reservation.utils;
 
 import java.nio.ByteBuffer;
 import java.sql.Timestamp;

@@ -3,24 +3,21 @@ package com.example.movie_reservation.reservation;
 import com.example.movie_reservation.reservation.model.MovieReservation;
 import com.example.movie_reservation.reservation.model.ReservedSeat;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.*;
 
-import static com.example.gccoffee.repository.JdbcUtils.toUUID;
+import static com.example.movie_reservation.utils.JdbcUtils.toUUID;
 
 @Repository
 public class ReservationRepository {
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
-    private final SimpleJdbcInsert jdbcInsert;
 
     public ReservationRepository(NamedParameterJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        this.jdbcInsert = new SimpleJdbcInsert(jdbcTemplate.getJdbcTemplate());
     }
 
     @Transactional
@@ -53,7 +50,7 @@ public class ReservationRepository {
                 paramMap.put("col", colArray.get(i));
                 var update = jdbcTemplate.update(
                         """
-                                insert into reserved_seat(movie_ticket_movie_ticket_id,movie_schedule_movie_schedule_id,seat_seat_id) 
+                                insert into reserved_seat(movie_ticket_movie_ticket_id,movie_schedule_movie_schedule_id,seat_seat_id)
                                 select UUID_TO_BIN(:movieTicketId),
                                        UUID_TO_BIN(:scheduleId),
                                        s.seat_id
@@ -86,7 +83,7 @@ public class ReservationRepository {
                     var price = rs.getLong("price");
                     var reservationTime = rs.getTimestamp("reservation_time").toLocalDateTime();
 
-                    return new MovieReservation(ticketId, phoneNumber, seatCount, price, reservationTime);
+                    return new MovieReservation(ticketId, userPhoneNumber, seatCount, price, reservationTime);
                 }
         );
     }

@@ -1,13 +1,13 @@
-package com.example;
+package com.example.movie_reservation;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GcCoffeeApplication {
+public class MovieResrvationApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GcCoffeeApplication.class, args);
+        SpringApplication.run(MovieResrvationApplication.class, args);
     }
 
 }

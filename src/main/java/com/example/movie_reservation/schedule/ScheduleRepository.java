@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import static com.example.gccoffee.repository.JdbcUtils.toUUID;
+import static com.example.movie_reservation.utils.JdbcUtils.toUUID;
 
 @Repository
 public class ScheduleRepository {
@@ -54,7 +54,7 @@ public class ScheduleRepository {
                             "where ms.movie_schedule_id=UUID_TO_BIN(:scheduleId);",
                     Collections.singletonMap("scheduleId", scheduleId.toString()),
                     scheduleRowMapper);
-            return Optional.of(schedule);
+            return Optional.ofNullable(schedule);
         } catch (DataAccessException e) {
             return Optional.empty();
         }

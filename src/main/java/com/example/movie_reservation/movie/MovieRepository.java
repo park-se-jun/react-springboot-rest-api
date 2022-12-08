@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static com.example.gccoffee.repository.JdbcUtils.*;
+import static com.example.movie_reservation.utils.JdbcUtils.*;
 @Repository
 public class MovieRepository {
     private final NamedParameterJdbcTemplate jdbcTemplate;
